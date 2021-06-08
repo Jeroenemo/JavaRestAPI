@@ -48,8 +48,8 @@ INDEX VERSION 1.131+/Users/Jeroen/Documents/workspace-spring-tool-suite-4-4.10.0
 526622925.index
 3535796028.index
 1223134533.index
-2722983882.index
 1753387240.index
+2722983882.index
 892691825.index
 1759261157.index
 3232600652.index
@@ -62,7 +62,6 @@ INDEX VERSION 1.131+/Users/Jeroen/Documents/workspace-spring-tool-suite-4-4.10.0
 3102520145.index
 3067214472.index
 3512958646.index
-1924484980.index
 1469390213.index
 900615583.index
 1335909188.index
