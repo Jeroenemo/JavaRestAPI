@@ -2,7 +2,7 @@ package com.example.request;
 
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+//import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +21,9 @@ public class CreateStudentRequest {
 	
 	@NotBlank(message = "email is required")
 	private String email;
+	
+	private String street;
+	
+	private String city;
 	
 }

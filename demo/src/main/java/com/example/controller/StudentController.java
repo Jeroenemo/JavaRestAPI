@@ -154,13 +154,18 @@ public class StudentController {
 		
 		return student;
 	}
-	
+	// JPA method
 	@PutMapping("update")
 	public StudentResponse updateStudent (@Valid @RequestBody UpdateStudentRequest updateStudentRequest) {
 		Student student = studentService.updateStudent(updateStudentRequest);
 		
 		return new StudentResponse(student);
 	}
+	// JPQL query
+//	@PutMapping("updateFirstName/{id}/{firstName}")
+//	public String updateStudentWithJpql (@PathVariable Long id, @PathVariable String firstName) {
+//		return studentService.updateStudentWithJpql(id, firstName) + " Student(s) updated";
+//	}
 	
 	@DeleteMapping("delete/{id}")
 	public String deleteStudent (@PathVariable long id) {

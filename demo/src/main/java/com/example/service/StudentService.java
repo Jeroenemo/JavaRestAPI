@@ -3,22 +3,29 @@ package com.example.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.example.entity.Address;
 import com.example.entity.Student;
+import com.example.repository.AddressRepository;
 import com.example.repository.StudentRepository;
 import com.example.request.CreateStudentRequest;
 import com.example.request.InQueryRequest;
 import com.example.request.UpdateStudentRequest;
+
+
+// Service Layer calls methods defined in Repository
 
 @Service
 public class StudentService {
 	
 	@Autowired
 	StudentRepository studentRepository;
+	
+	@Autowired
+	AddressRepository addressRepository;
 	
 	public List<Student> getAllStudents () {
 		return studentRepository.findAll();
@@ -29,7 +36,8 @@ public class StudentService {
 	}
 	
 	public Student getByFirstNameAndLastName (String firstName, String lastName) {
-		return studentRepository.findByFirstNameAndLastName(firstName, lastName);
+//		return studentRepository.findByFirstNameAndLastName(firstName, lastName); JPA method
+		return studentRepository.getByFirstNameAndLastName(firstName, lastName);
 	}
 	
 	public List<Student> getByFirstNameOrLastName (String firstName, String lastName) {
@@ -67,6 +75,13 @@ public class StudentService {
 	public Student createStudent (CreateStudentRequest createStudentRequest) {
 		Student student = new Student(createStudentRequest);
 		
+		Address address = new Address();
+		address.setStreet(createStudentRequest.getStreet());
+		address.setCity(createStudentRequest.getCity());
+		
+		addressRepository.save(address);
+		
+		student.setAddress(address);
 		student = studentRepository.save(student);
 		return student;
 	}
@@ -90,6 +105,10 @@ public class StudentService {
 		student = studentRepository.save(student);
 		return student;
 	}
+	
+//	public Integer updateStudentWithJpql (Long id, String firstName) {
+//		return studentRepository.updateFirstName(id, firstName);
+//	}
 	
 	public String deleteStudent (long id) {
 		studentRepository.deleteById(id);
